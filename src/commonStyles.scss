@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;;
+}
+
+@mixin background {
+    background: linear-gradient(90.32deg, #CC73BA 29.28%, #FAC2B0 81.44%);
+}
+
+@mixin arrow-left {
+    color: white;
+    font-size: 25px;
+}
+

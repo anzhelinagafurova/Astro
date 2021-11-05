@@ -1,0 +1,13 @@
+@import '../../commonStyles.scss';
+
+.header {
+    @include background;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px;
+}
+.arrow-left {
+    @include arrow-left;
+}
