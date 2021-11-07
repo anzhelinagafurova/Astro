@@ -1,0 +1,105 @@
+@import '../../commonStyles.scss';
+* {
+  outline:none
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.login-form input {
+  font-family: Calibri;
+  font-size: 16px;
+  border: none;
+  border-bottom: 3px solid lightgrey;
+}
+
+.tel-wrapper {
+  display: flex;
+  width: 50%;
+  margin: 5vh 0;
+}
+.number-7 {
+  font-family: Calibri;
+  font-size: 26px;
+  color: gray;
+  width: 20%;
+  margin: 0;
+}
+.login-form input[type="tel"] {
+  width: 80%;
+}
+
+.login-form input[type="password"] {
+  width: 50%;
+  margin-bottom: 5vh;
+}
+
+.h1-text {
+  font-family: 'Lobster';
+  font-size: 48px;
+  padding-left: 3px;
+  color: transparent;    
+	background-clip: text;
+	background-image: $linear-gradient; 
+  margin: 5vh 0;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.h2-r-text {
+  font-family: 'Lobster';
+  font-size: 24px;
+  color: transparent;    
+	background-clip: text;
+	background-image: $linear-gradient;
+  margin-top: 2vh;
+  margin-left: 20vw;
+  font-weight: 400;
+  text-decoration: none;
+
+}
+
+.login-button {
+  @include background;
+  display: flex;
+  position: fixed;
+  bottom: 5vh;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+  margin: 10vh auto;
+}
+
+.fa-play {
+  margin-left: 10px;
+
+}
+@media screen and ( max-height: 600px ) {
+  .login-button{
+    bottom: 1vh;
+    margin: 30px auto;
+    right: 30px;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+  }
+  .fa-play {
+    margin-left: 5px;
+  
+  }
+}
