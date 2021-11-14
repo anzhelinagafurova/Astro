@@ -21,17 +21,6 @@ export default class EditPage extends Component {
         photo: null
     }
 
-    setData = (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        
-        // let userInfo = {
-        //   name: form.username.value,
-        //   welcome_msg: form.message.value || "Привет всем друзьям!",
-        //   image_link: form.pictureUrl.value || profilePicSvg
-        // }
-    }
-
     setPhoto = async (e) => {
         const photo = await readPhoto(e);
         this.setState({
@@ -46,16 +35,16 @@ export default class EditPage extends Component {
     render(){
         return (
         <>
-            <Header linkTo="/registrationPage"/>
-            <section className='edit-container'>
-                <form className='name-form' onSubmit={this.validateForm}>
-                <label htmlFor="picture" id="upload-background" className="upload-background">
+            <Header linkTo="/registrationPage" linkType="arrow"/>
+            <label htmlFor="picture" id="upload-background">
                     {this.state.photo ? <img src={this.state.photo} alt="Profile icon" className="profile-photo"></img> : 
-                    <div><i className="fa fa-plus" aria-hidden="true"></i></div>}             
+                    <div className="upload-background"><i className="fa fa-plus" aria-hidden="true"></i></div>}             
                     <input type="file" id="picture" className="hidden" accept="image/*" onChange={this.setPhoto}/>
                 </label>
-
-                <p className='normal-label'>Загрузите фотографию</p>
+            <section className='edit-container'>
+                <form className='name-form' onSubmit={this.validateForm}>
+            
+                {this.state.photo ? <p></p>:<p className='normal-label'>Загрузите фотографию</p>}
 
                 <input className='form-name' type="text" name="username" placeholder='Имя' maxLength="25" required />
 

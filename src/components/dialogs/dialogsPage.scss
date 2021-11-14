@@ -1,0 +1,34 @@
+@import '../../commonStyles.scss';
+%message-wrapped {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dialogs-container{
+    .dialog-item{
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid lightgrey;
+    }
+    .dialog-image{
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .dialog-text-info{
+        color: black;
+        overflow: hidden;
+        .dialog-name{
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .dialog-message{
+            @extend %message-wrapped;
+        }
+    }
+    .margin_top{
+        margin-top: 5vh;
+    }
+}

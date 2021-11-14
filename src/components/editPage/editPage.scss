@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15vh;
+    padding: 20px 0;
+    
 }
 .upload-pic, 
 .form-photo-input{
@@ -20,16 +21,14 @@
     border-radius: 50%;
     color: white;
     font-size: 50px;
-    margin: 0 auto 2vh;
+    margin: 15vh auto 2vh;
 }
 .hidden{
     display: none;
 }
 .profile-photo{
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    position: absolute;
+    max-height: 70vh;
+    width: 100vw;
 }
 .normal-label,
 .date-label{
