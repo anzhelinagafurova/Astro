@@ -11,6 +11,8 @@ a {
 }
 
 $linear-gradient: linear-gradient(90.32deg, #cf7cbf 29.28%, #f8b3c5 81.44%);
+$pink: #CC73BA;
+$peach: #ECB6A5;
 
 @mixin background {
     background: linear-gradient(90.32deg, #CC73BA 29.28%, #FAC2B0 81.44%);

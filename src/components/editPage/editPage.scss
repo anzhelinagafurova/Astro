@@ -3,12 +3,14 @@
 .edit-container{
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    padding-top: 15vh;
 }
-.upload-pic{
+.upload-pic, 
+.form-photo-input{
     display: none;
 }
-.avatar-empty-icon{
+.upload-background {
     @include background;
     display: flex;
     align-items: center;
@@ -18,9 +20,89 @@
     border-radius: 50%;
     color: white;
     font-size: 50px;
-    margin: 0 auto;
+    margin: 0 auto 2vh;
 }
-input{
+.hidden{
+    display: none;
+}
+.profile-photo{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    position: absolute;
+}
+.normal-label,
+.date-label{
+    text-align: center;
+    color: grey;
+    font-size: 15px;
+    margin-bottom: 8vh;
+}
+.date-label{
+    font-size: 12px;
+}
+.info-label{
+    color: grey;
+    font-size: 15px;
+    margin-bottom: 1vh;
+}
+.form-name,
+.form-city{
     display: flex;
-    margin: 0 auto;
+    text-align: center;
+    font-family: Calibri;
+    font-size: 20px;
+    border: none;
+    border-bottom: 3px solid lightgrey;
+    margin: 0 auto 4vh;
+}
+.form-date{
+    border: 0;
+    border-bottom: 3px solid lightgrey;
+    display: flex;
+    margin: 0 auto 0.5vh;
+    text-align: center;
+    color: gray;
+}
+.info-field{
+    width: 100%;
+    height: 12vh;
+    border: 2px solid lightgrey;;
+}
+.flex-field{
+    display: flex;
+    margin-top: 7vh;
+    .flex-label{
+        color: gray;
+        font-size: 15px;
+        margin-right: 10px;
+    }
+}
+.button-field{
+    margin: 5vh 0;
+    .to-test-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 130px;
+        height: 50px;
+        border-radius: 20px;
+        color: white;
+    }
+    .button-label{
+        font-size: 12px;
+        text-align: center;
+        color: grey;
+        margin-bottom: 2vh;
+    }
+    .pink-color{
+        background-color: $pink;
+    }
+    .peach-color{
+        background-color: $peach;
+    }
+}
+.no-fixed{
+    position: static !important
 }
