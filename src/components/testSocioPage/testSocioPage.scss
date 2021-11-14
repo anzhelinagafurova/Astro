@@ -1,0 +1,42 @@
+.test-socio-page {
+  background-color: #F8EAF5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  .question-block {
+    width: 75%;
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .text {
+      margin-bottom: 10px;
+    }
+    .answer-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      .no {
+        border:none;
+        background-color: #FEEDE8;
+        width: 70px;
+        height: 30px;
+        border-radius: 50px;
+      }
+      .no-checked {
+        background-color: #EBC7E3;
+      }
+      .yes {
+        border:none;
+        background-color: #F5E3F1;
+        width: 70px;
+        height: 30px;
+        border-radius: 50px;
+      }
+    }
+  }
+}
