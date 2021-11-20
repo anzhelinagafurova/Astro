@@ -3,23 +3,28 @@ import Header from '../header/header';
 import '../test16PersPage/test16PersPage.scss';
 
 export default class Test16PersPage extends Component {
+  state = {
+    answers: []
+  }
   answers = []
 
   renderOneSection = (number, text, no, yes) => {
+    const answers = this.answers;
+
     return (
       <section className="question-block">
         <div className="text">
           {text}
         </div>
         <div className="answer-container">
-          <button className={this.answers[number] ? 'no-checked' : 'no'} onClick={() => {
-            this.answers[number] = no;
-            console.log(this.answers)
+          <button className={answers[number] === no ? 'no-checked' : 'no'} onClick={() => {
+            answers[number] = no;
+            this.setState({ answers: answers })
           }}>
             Нет</button>
-          <button className='yes' onClick={() => {
-            this.answers[number] = yes
-            console.log(this.answers)
+          <button className={answers[number] === yes ? 'yes-checked' : 'yes'} onClick={() => {
+            answers[number] = yes
+            this.setState({ answers: answers })
           }}>
             Да</button>
         </div>
@@ -30,6 +35,7 @@ export default class Test16PersPage extends Component {
   sayResult = () => {
     if (this.answers.length === 5) {
       console.log('отправлено')
+      console.log(this.state)
     }
     else {
       alert('Вы ответили не на все вопросы')
@@ -46,7 +52,7 @@ export default class Test16PersPage extends Component {
           {this.renderOneSection(2, "text2", "N2", "Y")}
           {this.renderOneSection(3, "text3", "N3", "Y")}
           {this.renderOneSection(4, "text4", "N4", "Y")}
-          <button onClick={this.sayResult}>
+          <button onClick={this.sayResult} className="button-result">
             Узнать результат
           </button>
         </div>

@@ -14,7 +14,9 @@
     align-items: center;
     flex-direction: column;
     .text {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 15px;
     }
     .answer-container {
       display: flex;
@@ -26,9 +28,15 @@
         width: 70px;
         height: 30px;
         border-radius: 50px;
+        font-size: 15px;
       }
       .no-checked {
-        background-color: #EBC7E3;
+        border:none;
+        background-color: #FDE1D8;
+        width: 70px;
+        height: 30px;
+        border-radius: 50px;
+        font-size: 15px;
       }
       .yes {
         border:none;
@@ -36,7 +44,31 @@
         width: 70px;
         height: 30px;
         border-radius: 50px;
+        font-size: 15px;
+      }
+      .yes-checked {
+        border:none;
+        background-color: #EBC7E3;
+        width: 70px;
+        height: 30px;
+        border-radius: 50px;
+        font-size: 15px;
       }
     }
+  }
+  .button-result {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 150px;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #CD74BA, #ECB6A5);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    font-size: 15px;
+    color: #CC73BA;
   }
 }
