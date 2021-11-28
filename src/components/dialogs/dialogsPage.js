@@ -13,17 +13,20 @@ export default class DialogsPage extends Component {
     searchDialog() {
 
     }
+
     componentDidMount() {
         this.service.getMockedData()
         .then((result) => this.setState({
             dialogData: result.data
         }))
     }
+
     renderDialogs(){
         return (
             this.state.dialogData.map((dialogItem, key) => {
-                return <Link to="#!" className="dialog-item" key={key}>
-                    <img src={dialogItem.image} className="dialog-image"/>
+                return <Link to={{pathname:"/dialog", hash: dialogItem.id}}
+                    className="dialog-item" key={key}>
+                    <img src={dialogItem.image} alt="avatar" className="dialog-image"/>
                     <div className="dialog-text-info">
                         <p className="dialog-name">{dialogItem.name}</p>
                         <p className="dialog-message">{dialogItem.lastMessage}</p>
@@ -35,7 +38,7 @@ export default class DialogsPage extends Component {
     render(){
         return (
             <>
-                <Header linkTo="/registrationPage" linkType="bars" search={this.searchDialog}/>
+                <Header linkTo="/menu" linkType="bars" search={this.searchDialog}/>
                 <section className="dialogs-container">
                     {this.state.dialogData.length > 0 ? this.renderDialogs() : <p className='normal-label margin_top'>Здесь ничего нет...</p>}
                 </section>
