@@ -8,13 +8,13 @@ export default class Header extends Component {
     }
     renderBars() {
         return <header className="header">
-                    <Link to={this.props.linkTo}><i className="fa fa-bars header-item" aria-hidden="true"></i></Link>
-                    {this.props.search ? <i className="fa fa-search header-item" aria-hidden="true" onClick={this.props.search}></i> : <></>}
-                </header>
-                
+            <Link to={this.props.linkTo}><i className="fa fa-bars header-item" aria-hidden="true"></i></Link>
+            {this.props.search ? <i className="fa fa-search header-item" aria-hidden="true" onClick={this.props.search}></i> : <></>}
+        </header>
+
     }
-    render(){
-        switch (this.props.linkType){
+    render() {
+        switch (this.props.linkType) {
             case "arrow": {
                 return this.renderArrow();
             }

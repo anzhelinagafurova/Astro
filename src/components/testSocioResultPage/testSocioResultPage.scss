@@ -1,0 +1,45 @@
+@import '../../commonStyles.scss';
+.test-socio-result {
+  min-height: calc(100vh - 90px);
+  background-color: #F8EAF5;
+  padding: 20px;
+  .block {
+    background-color: white;
+    min-height: calc(100vh - 100px);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    .type-name {
+      font-size: 20px;
+      margin: 5vh 0;
+    }
+    .text {
+      margin: 3vh 0;
+      font-size: 16px;
+    }
+    .img {
+      max-width: 70%;
+    }
+    .read-more {
+      font-family: 'Roboto', sans-serif;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      align-items: center;
+      width: 150px;
+      height: 45px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background-image: linear-gradient(white, white), 
+                        linear-gradient(to right, #CD74BA, #ECB6A5);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      font-size: 15px;
+      color: #CC73BA;
+      p {
+        padding-top: 12px;
+        padding-left: 15px;
+      }
+    }
+  }
+}

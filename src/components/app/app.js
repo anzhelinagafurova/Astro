@@ -5,6 +5,7 @@ import EnterPage from '../enterPage/enterPage';
 import DialogsPage from '../dialogs/dialogsPage';
 import RegistrationPage from '../registrationPage/registrationPage';
 import TestSocioPage from '../testSocioPage/testSocioPage';
+import TestSocioResultPage from '../testSocioResultPage/testSocioResultPage';
 import Test16PersPage from '../test16PersPage/test16PersPage';
 
 const App = () => {
@@ -12,7 +13,8 @@ const App = () => {
         <Routes>
             {/* <Route exact path="/" element={<EnterPage />} /> */}
             <Route exact path="/" element={<DialogsPage />} />
-            <Route exact path="/testSocioPage" element={<TestSocioPage />} />
+            <Route exact path="/testSocioResultPage" element={<TestSocioResultPage />} />
+            <Route exact path="/testSocioPage" element={<TestSocioPage page="Test page" />} />
             <Route exact path="/test16PersPage" element={<Test16PersPage />} />
             <Route exact path="/registrationPage" element={<RegistrationPage />} />
             <Route exact path="/editPage" element={<EditPage />} />
