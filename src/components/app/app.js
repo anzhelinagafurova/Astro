@@ -7,9 +7,13 @@ import RegistrationPage from '../registrationPage/registrationPage';
 import TestSocioPage from '../testSocioPage/testSocioPage';
 import TestSocioResultPage from '../testSocioResultPage/testSocioResultPage';
 import Test16PersPage from '../test16PersPage/test16PersPage';
+import Dialog from '../dialogs/dialog';
+
 
 const App = () => {
+
     return (
+
         <Routes>
             {/* <Route exact path="/" element={<EnterPage />} /> */}
             <Route exact path="/" element={<DialogsPage />} />
@@ -20,11 +24,13 @@ const App = () => {
             <Route exact path="/editPage" element={<EditPage />} />
             {/* <Route path="/chatapp/:id"
                 render={({ match }) => {
-                    const { id, groupId } = match.params;
-                    return <ChatApp dialogId={groupId} id={id} />
+                    const { id } = match.params;
+                    return <Dialog id={id} />
                 }}
             /> */}
         </Routes>
+
+
     )
 }
 

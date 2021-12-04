@@ -8,5 +8,20 @@
     box-sizing: border-box;
     height: 50px;
     padding: 10px;
-}
+    .flexEnd{
+        justify-items: flex-end;
+    }
 
+}
+.headerDialog{
+    justify-content: flex-start;
+    .header-image {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        margin: 0px 10px 0px 20px;
+    }
+    .header-name {
+        color: white;
+    }
+}
