@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './header.scss';
+import SideBar from "./sidebar";
 
 export default class Header extends Component {
     renderArrow() {
@@ -8,8 +9,7 @@ export default class Header extends Component {
     }
     renderBars() {
         return <header className="header">
-            <Link to={this.props.linkTo}><i className="fa fa-bars header-item" aria-hidden="true"></i></Link>
-            {this.props.search ? <i className="fa fa-search header-item flexEnd" aria-hidden="true" onClick={this.props.search}></i> : <></>}
+            <SideBar />
         </header>
     }
     renderDialogHeader() {

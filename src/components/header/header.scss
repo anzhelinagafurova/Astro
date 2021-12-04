@@ -25,3 +25,56 @@
         color: white;
     }
 }
+
+/*sidebar*/
+.bm-item {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: #000000;
+    transition: color 0.2s;
+}
+
+.bm-item:hover {
+    color: rgb(82, 82, 82);
+}
+
+.bm-burger-button {
+    position: fixed;
+    width: 25px;
+    height: 20px;
+    left: 15px;
+    top: 15px;
+}
+
+.bm-burger-bars {
+    background: #ffffff;
+}
+
+.bm-cross-button {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 24px;
+    width: 24px;
+}
+
+.bm-cross {
+background: #000000;
+}
+
+.bm-menu {
+    position: fixed;
+    width: 300px;
+    background: #ffffff;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+}
+.bm-menu-wrap {
+    left: 0;
+    top: 50px;
+}
+.bm-overlay {
+    left: 0;
+    top: 50px;
+    background: rgba(0, 0, 0, 0.3);
+}
