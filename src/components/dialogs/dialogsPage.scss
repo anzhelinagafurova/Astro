@@ -32,3 +32,77 @@
         margin-top: 5vh;
     }
 }
+.mes-history{
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;  
+    padding: 10px 15px;
+    box-sizing: border-box;
+    .mes{
+        padding: 5px 15px;
+        width: fit-content;
+        border-radius: 15px;
+        margin: 5px 0px;
+    }          
+    .outgoing{
+        background: #CC73BA33;
+        align-self: flex-end;
+    }
+    .incoming{
+        background: #FAC2B04D;
+    }                                                                                                          
+}
+.mes-form{
+    @include background;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    .fa-smile{
+        color: white;
+        font-size: 30px;
+        margin-right: 10px;
+    }
+    .fa-play{
+        color: white;
+        font-size: 30px;
+        margin-left: 10px;
+    }
+    button{
+        background: transparent;
+        border: none;
+    }
+    .mes-input{
+        height: 40px;
+        background: transparent;
+        border: 0;
+        font-size: 16px;
+        flex-grow: 1;
+        color: white;
+    }
+}
+.choice-container{
+    text-align: center;
+    color: grey;
+    .choice-block{
+        margin: 20px 0px;
+    }
+    .choice-yes{
+        border: 0;
+        background: #FAC2B04D;
+        margin-right: 20px;
+        font-size: 16px;
+    }
+    .choice-no{
+        border: 0;
+        background: #CC73BA33;
+        margin-left: 20px;
+        font-size: 16px;
+    }
+}

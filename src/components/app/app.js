@@ -15,8 +15,9 @@ const App = () => {
     return (
 
         <Routes>
-            {/* <Route exact path="/" element={<EnterPage />} /> */}
-            <Route exact path="/" element={<DialogsPage />} />
+            <Route exact path="/" element={<EnterPage />} />
+            <Route exact path="/dialogsPage" element={<DialogsPage />} />
+            <Route exact path="/dialog" element={<Dialog />} />
             <Route exact path="/testSocioResultPage" element={<TestSocioResultPage />} />
             <Route exact path="/testSocioPage" element={<TestSocioPage page="Test page" />} />
             <Route exact path="/test16PersPage" element={<Test16PersPage />} />
