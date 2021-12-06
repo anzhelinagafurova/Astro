@@ -9,7 +9,7 @@ export default class Header extends Component {
     }
     renderBars() {
         return <header className="header">
-            <SideBar />
+            <SideBar letter="M" age="21" name="Masha" city="Yekaterinburg" />
         </header>
     }
     renderDialogHeader() {

@@ -27,14 +27,6 @@
 }
 
 /*sidebar*/
-.bm-item {
-    display: inline-block;
-    text-decoration: none;
-    margin-bottom: 10px;
-    color: #000000;
-    transition: color 0.2s;
-}
-
 .bm-item:hover {
     color: rgb(82, 82, 82);
 }
@@ -59,14 +51,14 @@
 }
 
 .bm-cross {
-background: #000000;
+background: #6b6b6b;
 }
 
 .bm-menu {
-    position: fixed;
     width: 300px;
     background: #ffffff;
-    padding: 2.5em 1.5em 0;
+    opacity: 0.9;
+    padding: 2.5em 0 0;
     font-size: 1.15em;
 }
 .bm-menu-wrap {
@@ -77,4 +69,85 @@ background: #000000;
     left: 0;
     top: 50px;
     background: rgba(0, 0, 0, 0.3);
+}
+
+.menu {
+    color: #6b6b6b;
+    .block-1 {
+        display: flex !important;
+        padding: 0 1.5em 1em;
+        .profile-photo{
+            width: 50px
+        }
+        .upload-background {
+            @include background;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            color: white;
+            font-size: 50px;
+            margin: 0;
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 20px;
+            .big {
+                font-size: 18px;
+            }
+            .small {
+                font-size: 12px;
+            }
+
+        }
+    }
+    .link {
+        text-align: center;
+        margin: 30px 0;
+
+    }
+    .search-div {
+        display: flex !important;
+        justify-content: center;
+        padding: 10vh 0;
+        .search {
+            font-family: 'Roboto', sans-serif;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            align-items: center;
+            width: 150px;
+            height: 45px;
+            border: 1px solid transparent;
+            border-radius: 15px;
+            background-image: linear-gradient(white, white), 
+                            linear-gradient(to right, #CD74BA, #ECB6A5);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            font-size: 17px;
+            p {
+                color: transparent;    
+                background-clip: text;
+                background-image: $linear-gradient;
+                padding-top: 12px;
+                padding-left: 20px;
+            }
+        }
+    }
+    .exit {
+        position: absolute;
+        bottom: 60px;
+        margin: 0 auto;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        text-decoration: underline;
+        font-size: 14px;
+    }
+    a:-webkit-any-link {
+        color: #6b6b6b;
+    }
 }
