@@ -7,6 +7,7 @@ import RegistrationPage from '../registrationPage/registrationPage';
 import TestSocioPage from '../testSocioPage/testSocioPage';
 import TestSocioResultPage from '../testSocioResultPage/testSocioResultPage';
 import Test16PersPage from '../test16PersPage/test16PersPage';
+import SearchPage from '../searchPage/searchPage';
 import Dialog from '../dialogs/dialog';
 
 
@@ -22,6 +23,7 @@ const App = () => {
             <Route exact path="/testSocioPage" element={<TestSocioPage page="Test page" />} />
             <Route exact path="/test16PersPage" element={<Test16PersPage />} />
             <Route exact path="/registrationPage" element={<RegistrationPage />} />
+            <Route exact path="/searchPage" element={<SearchPage />} />
             <Route exact path="/editPage" element={<EditPage />} />
             {/* <Route path="/chatapp/:id"
                 render={({ match }) => {

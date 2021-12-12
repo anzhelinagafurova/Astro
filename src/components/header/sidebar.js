@@ -24,7 +24,7 @@ export default props => {
       </div>
       <hr />
       <div className="search-div">
-        <Link to="/editPage" className="search"><p>Поиск судьбы</p></Link>
+        <Link to="/searchPage" className="search"><p>Поиск судьбы</p></Link>
       </div>
       <div className="exit">
         <Link to="/">Выход</Link>
