@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route } from "react-router";
 import Header from '../header/header';
 import '../testSocioPage/testSocioPage.scss';
 import TestSocioResultPage from "../testSocioResultPage/testSocioResultPage";
