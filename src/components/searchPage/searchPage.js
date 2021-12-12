@@ -48,7 +48,7 @@ export default class SearchPage extends Component {
             </div>
           </div>
           <div className="search-footer">
-            <img className="dislike" src="/img/hearts/heart2.png"></img>
+            <img className="dislike" src="/img/hearts/heart2.png" alt="Дизлайк"></img>
             <div className="tags">
               <div className="block" style={{ backgroundColor: `${this.detectColor(this.state.socio)}` }}>
                 {this.state.tsocio}
@@ -63,7 +63,7 @@ export default class SearchPage extends Component {
                 {this.state.tzz}
               </div>
             </div>
-            <img className="like" src="/img/hearts/heart1.png"></img>
+            <img className="like" src="/img/hearts/heart1.png" alt="Лайк"></img>
           </div>
         </div>
       </section >

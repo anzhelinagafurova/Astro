@@ -3,7 +3,7 @@ import { slide as Menu } from "react-burger-menu";
 import { Link } from 'react-router-dom';
 import './header.scss';
 
-export default props => {
+const props = (props) => {
   return (
     <Menu className="menu">
       <div className="block-1">
@@ -32,3 +32,4 @@ export default props => {
     </Menu>
   );
 };
+export default props;

@@ -43,7 +43,7 @@ export default class TestSocioResultPage extends Component {
         <section className='test-socio-result'>
           <div className='block'>
             <div className="text">Ваш тип:</div>
-            <img src={"/img/socio/" + this.type + ".png"} className="img" />
+            <img src={"/img/socio/" + this.type + ".png"} alt="Картинка с вашим типом" className="img" />
             <div className="type-name">{this.typeName}</div>
             <a href={this.typeLink} className="read-more"><p>Читать описание</p></a>
           </div>
