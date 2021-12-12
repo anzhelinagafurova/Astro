@@ -19,7 +19,7 @@ export default class EnterPage extends Component {
             <input type="tel" name="phone-number" placeholder='Тел. номер' maxLength="10" pattern="\d*" required></input>
           </div>
           <input type="password" name="password" placeholder='Пароль' required></input>
-          <Link to="#!" type="submit" className='login-button'><i className="fas fa-play"></i></Link>
+          <Link to="/dialogsPage" type="submit" className='login-button'><i className="fas fa-play"></i></Link>
         </form>
       </section>
     )
