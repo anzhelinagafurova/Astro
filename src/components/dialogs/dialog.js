@@ -21,14 +21,19 @@ const Dialog = () => {
     }]);
 
     const renderMessageHistory = function () {
-        return mesHistory.map((mes, key) => {
-            return (
-                <div className={mes.isIncome ? "mes incoming" : "mes outgoing"} key={key}>
-                    {mes.message}
-                </div>
-                )
-            }
-        )
+        if (mesHistory.length > 0) {
+            return mesHistory.map((mes, key) => {
+                return (
+                    <div className={mes.isIncome ? "mes incoming" : "mes outgoing"} key={key}>
+                        {mes.message}
+                    </div>
+                    )
+                }
+            )
+        }
+        else {
+            renderMessage();
+        }
     }
     const addMessage = function (event) {
         event.preventDefault();
@@ -42,16 +47,11 @@ const Dialog = () => {
             setMesHistory([...mesHistory, newMessage])
         }
     }
-    const renderChoiceMessage = function () {
+    const renderMessage = function () {
         return (
             <section className="choice-container">
-            Вы понравились этому пользователю. <br/>
-            Хотите начать общение? 
-            <div className="choice-block">
-                <button className="mes choice-yes">Да</button>
-                <button className="mes choice-no">Нет</button>
-            </div>
-            
+                Вы понравились этому пользователю. <br/>
+                Начните общение!
             </section>
         )
     }
@@ -67,7 +67,6 @@ const Dialog = () => {
         <Header linkTo="/dialogsPage" linkType="dialog" image={image} name={name}/>
         <section className="mes-history">
             {renderMessageHistory()}
-            {/* {renderChoiceMessage()} */}
         </section>
         <form className="mes-form" onSubmit={addMessage}>
             <i className="far fa-smile"></i>

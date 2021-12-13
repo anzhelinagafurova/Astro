@@ -7,25 +7,57 @@
     justify-content: space-between;
     box-sizing: border-box;
     height: 50px;
-    padding: 10px;
-    .flexEnd{
-        justify-items: flex-end;
-    }
-
-}
-.headerDialog{
-    justify-content: flex-start;
+    padding: 10px 15px;
     .header-image {
         height: 40px;
         width: 40px;
         border-radius: 50%;
         margin: 0px 10px 0px 20px;
     }
+    .dial-info{
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+    }
     .header-name {
         color: white;
     }
+    .search-group{
+        display: flex;
+        align-items: center;
+        
+        .search-input{
+            border: 0;
+            border-bottom: 3px solid white;
+            background: transparent;
+            padding: 8px 15px;  
+            margin-right: 10px; 
+            color: white;
+        }
+        .search-input::placeholder {
+            color: white;
+            opacity: 0.6;
+        }
+    }
+    .fa-ellipsis-v, .fa-search{
+        color: white;
+        font-size: 20px;
+    }
 }
-
+.settings-bar{
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    padding: 10px 25px;
+    background: white;
+    color: grey;
+    font-size: 14px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    p{
+        padding: 5px 0px;
+    }
+}
 /*sidebar*/
 .bm-item:hover {
     color: rgb(82, 82, 82);

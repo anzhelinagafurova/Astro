@@ -15,7 +15,7 @@ const props = (props) => (
     </div>
     <hr />
     <div className="link">
-      <Link to="/">Сообщения</Link>
+      <Link to="/dialogsPage">Сообщения</Link>
     </div>
     <hr />
     <div className="link">

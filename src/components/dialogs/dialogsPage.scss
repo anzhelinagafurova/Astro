@@ -28,6 +28,12 @@
             @extend %message-wrapped;
         }
     }
+    .dialog-time{
+       text-align: right;
+       flex-grow: 1;
+       color: rgb(153, 153, 153);
+       font-size: 14px;
+    }
     .margin_top{
         margin-top: 5vh;
     }
@@ -86,23 +92,12 @@
         flex-grow: 1;
         color: white;
     }
+    .mes-input::placeholder{
+        color: white;
+        opacity: 0.6;
+    }
 }
 .choice-container{
     text-align: center;
     color: grey;
-    .choice-block{
-        margin: 20px 0px;
-    }
-    .choice-yes{
-        border: 0;
-        background: #FAC2B04D;
-        margin-right: 20px;
-        font-size: 16px;
-    }
-    .choice-no{
-        border: 0;
-        background: #CC73BA33;
-        margin-left: 20px;
-        font-size: 16px;
-    }
 }

@@ -10,17 +10,25 @@ export default class DialogsPage extends Component {
     state = {
         dialogData: []
     };
-    searchDialog() {
-
+    searchDialog = (value) => {
+        this.getDialogs()
+        .then((result) => result.data)
+        .then((data) => data.filter(dialogItem => dialogItem.name.toLowerCase().includes(value.toLowerCase())))
+        .then((result) => this.setState({
+            dialogData: result
+        }))
     }
 
-    componentDidMount() {
-        this.service.getMockedData()
+    componentDidMount = () => {
+        this.getDialogs()
         .then((result) => this.setState({
             dialogData: result.data
         }))
     }
 
+    getDialogs() {
+        return this.service.getMockedData()
+    }
     renderDialogs(){
         return (
             this.state.dialogData.map((dialogItem, key) => {
@@ -31,6 +39,7 @@ export default class DialogsPage extends Component {
                         <p className="dialog-name">{dialogItem.name}</p>
                         <p className="dialog-message">{dialogItem.lastMessage}</p>
                     </div>
+                    <span className="dialog-time">{dialogItem.time}</span>
                 </Link>
             })
         )

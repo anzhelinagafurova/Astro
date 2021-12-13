@@ -6,7 +6,7 @@ export default class AstroService {
                 name: "Анна",
                 image: "https://games-of-thrones.ru/sites/default/files/pictures/alll/AnnaMiha/48.jpg",
                 lastMessage: "Привет, ты мне понравился..",
-                time: "10м",
+                time: "10 м.",
                 // messages: [{
                 //     isIncome: true,
                 //     message: "Прив, как дела?",
@@ -23,7 +23,7 @@ export default class AstroService {
                 name: "Алексей",
                 image: "https://gdezhivet.com/wp-content/uploads/2019/07/Алексей-Воробьев-1.jpg",
                 lastMessage: "Мне нравятся парни",
-                time: "1ч",
+                time: "1 ч.",
                 // messages: [{
                 //     isIncome: true,
                 //     message: "Прив, как дела?",
