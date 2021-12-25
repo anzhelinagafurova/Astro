@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../enterPage/enterPage.scss';
 import './registrationPage.scss';
 import AstroService from "../../services/AstroService";
+import { connect } from 'react-redux';
 
 class RegistrationPage extends Component {
   service = new AstroService();
 
   state = {
     phone: '',
-    password: ''
+    password: '',
+    redirect: false,
+    error: false
   }
 
   render() {
-    return (
+    
+    return this.state.redirect ? <Navigate to="/editPage"/> : (
       <section className='login-container'>
         <Link to={'/'} className='h2-text'><h2 className='h2-text'>вход</h2></Link>
         <h1 className='h1-text'>регистрация</h1>
-        <form onSubmit={this.sendForm} className='login-form'>
+        <form className='login-form' onSubmit={this.sendForm}>
           <div className='tel-wrapper'>
             <p className="number-7">+7</p>
             <input type="tel" name="phoneNumber" placeholder='Тел. номер' maxLength="10" pattern="\d*" required></input>
@@ -26,46 +30,40 @@ class RegistrationPage extends Component {
           <input type="password" name="password2" placeholder='Повторите пароль' required></input>
           <button type="submit" className='login-button'><i className="fas fa-play"></i></button>
         </form>
+        {this.state.error ? <span className="error-msg">Данный пользователь уже зарегистрирован в системе!</span>: null}
       </section>
     )
   }
   sendForm = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    // const { setProlifePhoto, setUserName, setWelcomeMessage, setId } = this.props;
+    const { setToken } = this.props;
     let userInfo = {
       phone: form.phoneNumber.value,
       password: form.password.value
     };
-    console.log(JSON.stringify(userInfo))
-    this.service.sendDataPost(userInfo, 'https://dating-app-urfu.herokuapp.com/auth/signup')
-    // .then((result) => result.text())
-    // .then((answer) => { console.log(answer) })
-    // .then((answer) => {
-    //   console.log(answer)
-    // if (answer.status === 200) {
-    //   setUserName(answer.name)
-    //   setWelcomeMessage(answer.welcome_msg)
-    //   setProlifePhoto(answer.image_link)
-    //   setId(answer.id)
-    //   const { history } = this.props;
-    //   history.push('/dialogs');
-    // }
-    // if (answer.status === 1) {
-    //   alert("Password is incorrect!")
-    // }
-    // if (answer.status === 2) {
-    //   const { history } = this.props;
-    //   history.push('/edit');
-    // }
-    // })
+
+    this.service.sendDataPost(userInfo, '/auth/signup')
+    .then((result) => result.json())
+    .then((result) => {
+      setToken(result.access_token);
+      this.setState({
+        redirect: true, 
+        error: false
+      })
+    })
+    .catch(() => {
+      this.setState({
+        error: true
+      })
+    })
   }
 }
-const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
-  return {
-    myUserName, myWelcomeMessage, myProfilePhoto
+  const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
+    return {
+      myUserName, myWelcomeMessage, myProfilePhoto
+    }
   }
-}
 
 const mapDispatchProps = (dispatch) => {
   return {
@@ -89,10 +87,10 @@ const mapDispatchProps = (dispatch) => {
     setWelcomeMessage: (message) => {
       dispatch({ type: "SET_MY_WELCOME_MESSAGE", payload: message })
     },
+    setToken: (value) => {
+      dispatch({ type: "SET_TOKEN", payload: value })
+    }
   }
 }
 
-// export default connect(mapStateToProps, mapDispatchProps)(EnterPage);
-export default RegistrationPage;
-
-
+export default connect(mapStateToProps, mapDispatchProps)(RegistrationPage);

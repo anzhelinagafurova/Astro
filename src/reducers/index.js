@@ -1,5 +1,5 @@
 const initialState = {
-
+    token: null
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -7,6 +7,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 update: action.payload
+            }
+        }
+        case "SET_TOKEN": {
+            console.log(action.payload)
+            return {
+                ...state,
+                token: action.payload
             }
         }
 
