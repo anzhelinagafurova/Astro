@@ -11,13 +11,15 @@ class RegistrationPage extends Component {
   state = {
     phone: '',
     password: '',
+    password2: '',
     redirect: false,
-    error: false
+    error: false,
+    error_code: -1
   }
 
   render() {
-    
-    return this.state.redirect ? <Navigate to="/editPage"/> : (
+
+    return this.state.redirect ? <Navigate to="/editPage" /> : (
       <section className='login-container'>
         <Link to={'/'} className='h2-text'><h2 className='h2-text'>вход</h2></Link>
         <h1 className='h1-text'>регистрация</h1>
@@ -30,7 +32,9 @@ class RegistrationPage extends Component {
           <input type="password" name="password2" placeholder='Повторите пароль' required></input>
           <button type="submit" className='login-button'><i className="fas fa-play"></i></button>
         </form>
-        {this.state.error ? <span className="error-msg">Данный пользователь уже зарегистрирован в системе!</span>: null}
+        {this.state.error && this.state.error_code === 0 ? <span className="error-msg">Данный пользователь уже зарегистрирован в системе!</span> : null}
+        {this.state.error && this.state.error_code === 1 ? <span className="error-msg">Введенные пароли не совпадают!</span> : null}
+        {this.state.error && this.state.error_code === 2 ? <span className="error-msg">Номер телефона короче 10 цифр!</span> : null}
       </section>
     )
   }
@@ -42,28 +46,46 @@ class RegistrationPage extends Component {
       phone: form.phoneNumber.value,
       password: form.password.value
     };
-
+    if (userInfo.phone.length !== 10) {
+      this.setState({
+        error: true,
+        error_code: 2
+      })
+      return 2;
+    }
+    if (form.password.value !== form.password2.value) {
+      this.setState({
+        error: true,
+        error_code: 1
+      })
+      return 1;
+    }
+    this.setState({
+      error: false,
+      error_code: -1
+    })
     this.service.sendDataPost(userInfo, '/auth/signup')
-    .then((result) => result.json())
-    .then((result) => {
-      setToken(result.access_token);
-      this.setState({
-        redirect: true, 
-        error: false
+      .then((result) => result.json())
+      .then((result) => {
+        setToken(result.access_token);
+        this.setState({
+          redirect: true,
+          error: false
+        })
       })
-    })
-    .catch(() => {
-      this.setState({
-        error: true
+      .catch(() => {
+        this.setState({
+          error: true,
+          error_code: 0
+        })
       })
-    })
   }
 }
-  const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
-    return {
-      myUserName, myWelcomeMessage, myProfilePhoto
-    }
+const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
+  return {
+    myUserName, myWelcomeMessage, myProfilePhoto
   }
+}
 
 const mapDispatchProps = (dispatch) => {
   return {
