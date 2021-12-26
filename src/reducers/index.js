@@ -1,5 +1,5 @@
 const initialState = {
-    token: null
+    dataSearch: null
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,8 +9,7 @@ const reducer = (state = initialState, action) => {
                 update: action.payload
             }
         }
-        case "SET_TOKEN": {
-            console.log(action.payload)
+        case "SET_DATA_SEARCH": {
             return {
                 ...state,
                 token: action.payload

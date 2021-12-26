@@ -10,6 +10,15 @@ export default class AstroService {
       body: JSON.stringify(data)
     })
   }
+  sendDataPut(data, url) {
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
 }
   //   let ws = new WebSocket('wss://dating-app-urfu.herokuapp.com/ws/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDA0MjA5NTgsIm5iZiI6MCwiZXhwIjoxNjQwNDI0NTU4LCJzdWIiOiI2IiwidXNlciI6eyJpZCI6NiwicGhvbmUiOiIwMjk1ODk0ODUzIn19.2lPi1FKMpmFt-yfyL-YZd9QbA5sp9dWt966UKZG_8D4');
   //   ws.onmessage = function(event) {

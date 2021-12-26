@@ -12,11 +12,12 @@ class EnterPage extends Component {
     password: '',
     redirect: false,
     error: false,
-    error_code: -1
+    error_code: -1,
+    token: null
   }
 
   render() {
-    return this.state.redirect ? <Navigate to="/editPage" /> : (
+    return this.state.redirect ? <Navigate to="/searchPage" /> : (
       <section className='login-container'>
         <Link to={'/registrationPage'} className='h2-r-text'><h2 className='h2-r-text'>регистрация</h2></Link>
         <h1 className='h1-text'>вход</h1>
@@ -59,6 +60,7 @@ class EnterPage extends Component {
             redirect: true,
             error: false
           })
+          localStorage.setItem('token', result.access_token)
         } else {
           if (result.detail === "Wrong password!") {
             this.setState({
@@ -79,25 +81,6 @@ class EnterPage extends Component {
           error: true
         })
       })
-
-    // .then((answer) => {
-    //   console.log(answer)
-    // if (answer.status === 200) {
-    //   setUserName(answer.name)
-    //   setWelcomeMessage(answer.welcome_msg)
-    //   setProlifePhoto(answer.image_link)
-    //   setId(answer.id)
-    //   const { history } = this.props;
-    //   history.push('/dialogs');
-    // }
-    // if (answer.status === 1) {
-    //   alert("Password is incorrect!")
-    // }
-    // if (answer.status === 2) {
-    //   const { history } = this.props;
-    //   history.push('/edit');
-    // }
-    // })
   }
 }
 

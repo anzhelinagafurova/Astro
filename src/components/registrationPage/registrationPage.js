@@ -72,6 +72,7 @@ class RegistrationPage extends Component {
           redirect: true,
           error: false
         })
+        localStorage.setItem('token', result.access_token)
       })
       .catch(() => {
         this.setState({
