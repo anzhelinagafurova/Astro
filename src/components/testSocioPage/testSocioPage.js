@@ -36,6 +36,7 @@ export default class TestSocioPage extends Component {
 
   sayResult = () => {
     if (this.answers.length === 4) {
+      fetch(`/users/socionic_result?name_type=${this.answers.join("")}`, { method: 'PUT', headers: { token: localStorage.token } })
       this.setState({ page: "Result page" })
 
     }
@@ -51,7 +52,7 @@ export default class TestSocioPage extends Component {
         {this.state.page === "Result page" ? <TestSocioResultPage type={this.state.answers} /> :
           <>
             <Header linkTo="/editPage" linkType="arrow" />
-            <div className="test-socio-page">
+            <div className="test-socio-page" id="top">
               {this.renderOneSection(0, "1. Вы больше ориентирвоаны на окружающий мир предметов и людей, чем на собственные мысли и переживания.", "I", "E")}
               {this.renderOneSection(1, "2. Вам более свойственно находиться в моменте и выполнять активные и уверенные действия, нежели пребывать в размышлениях и анализе.", "N", "S")}
               {this.renderOneSection(2, "3. Вы чаще полагаетесь при принятии решений на собственные чувства, эмоции, понятия о морали, чем на холодный анализ, непредвзятость и объективный подход.", "T", "F")}

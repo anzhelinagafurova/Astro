@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Header from '../header/header';
 import '../test16PersPage/test16PersPage.scss';
+import Test16PersResultPage from "../test16PersResultPage/test16PersResultPage";
 
 export default class Test16PersPage extends Component {
   state = {
-    answers: []
+    answers: [],
+    page: this.props.page
   }
   answers = []
 
@@ -33,9 +35,10 @@ export default class Test16PersPage extends Component {
   }
 
   sayResult = () => {
-    if (this.answers.length === 5) {
-      console.log('отправлено')
-      console.log(this.state)
+    if (this.answers.length === 4) {
+      fetch(`/users/personalit_result?name_type=${this.answers.join("")}`, { method: 'PUT', headers: { token: localStorage.token } })
+      this.setState({ page: "Result page" })
+
     }
     else {
       alert('Вы ответили не на все вопросы')
@@ -45,17 +48,21 @@ export default class Test16PersPage extends Component {
   render() {
     return (
       <>
-        <Header linkTo="/editPage" linkType="arrow" />
-        <div className="test-16pers-page">
-          {this.renderOneSection(0, "text0", "N0", "Y")}
-          {this.renderOneSection(1, "text1", "N1", "Y")}
-          {this.renderOneSection(2, "text2", "N2", "Y")}
-          {this.renderOneSection(3, "text3", "N3", "Y")}
-          {this.renderOneSection(4, "text4", "N4", "Y")}
-          <button onClick={this.sayResult} className="button-result">
-            Узнать результат
-          </button>
-        </div>
-      </>)
+        {this.state.page === "Result page" ? <Test16PersResultPage type={this.state.answers} /> :
+          <>
+            <Header linkTo="/editPage" linkType="arrow" />
+            <div className="test-16pers-page" id="top">
+              {this.renderOneSection(0, "1. Предпочитаю решать проблемы не в одиночку за закрытыми дверьми, а путём обсуждения.", "I", "E")}
+              {this.renderOneSection(1, "2. Я опираюсь на внешние, уже известные данные и полученные опыт, вместо того, чтобы ориентироватсья на предчувствия или общую информацию.", "N", "S")}
+              {this.renderOneSection(2, "3. Предпочитаю следовать голосу разума, вместо того, чтобы полагаться на природу человеческих чувств.", "F", "T")}
+              {this.renderOneSection(3, "4. Воспринимаю информацию по одному каналу, а не по нескольким. Также лучше спланирую и продумаю все заранее, чем буду наверстывать в сжатые сроки.", "P", "J")}
+              <button onClick={this.sayResult} className="button-result">
+                Узнать результат
+              </button>
+            </div>
+          </>
+        }
+      </>
+    )
   }
 }

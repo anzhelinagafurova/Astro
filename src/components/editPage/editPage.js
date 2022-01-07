@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../header/header';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { readPhoto } from '../helpers';
 import './editPage.scss';
 
@@ -36,9 +37,9 @@ export default class EditPage extends Component {
     }
 
     calculateNumber = (num) => {
-        let arr = num.toString().replace(/-/g,"").split('');
+        let arr = num.toString().replace(/-/g, "").split('');
         const result = arr.reduce((sum, current) => sum + Number(current), 0);
-        if (result / 10 >= 1){
+        if (result / 10 >= 1) {
             this.calculateNumber(result)
         }
         else {
@@ -48,56 +49,56 @@ export default class EditPage extends Component {
         }
     }
     calcucateSign = (date) => {
-        date = new Date(null, Number(date.substring(5, 7))-1, Number(date.substring(8)))
+        date = new Date(null, Number(date.substring(5, 7)) - 1, Number(date.substring(8)))
         debugger;
-        if (date <= new Date('1900-01-19') || date >= new Date('1900-12-22')){
+        if (date <= new Date('1900-01-19') || date >= new Date('1900-12-22')) {
             return ['Козерог', 0]
         }
-        if (new Date('1900-20-01') <= date && date <= new Date('1900-18-02')){
+        if (new Date('1900-20-01') <= date && date <= new Date('1900-18-02')) {
             return ['Водолей', 1]
         }
-        if (new Date('1900-02-19') <= date && date <= new Date('1900-03-20')){
+        if (new Date('1900-02-19') <= date && date <= new Date('1900-03-20')) {
             return ['Рыбы', 2]
         }
-        if (new Date('1900-03-21') <= date && date <= new Date('1900-04-19')){
+        if (new Date('1900-03-21') <= date && date <= new Date('1900-04-19')) {
             return ['Овен', 3]
         }
-        if (new Date('1900-04-20') <= date && date <= new Date('1900-05-20')){
+        if (new Date('1900-04-20') <= date && date <= new Date('1900-05-20')) {
             return ['Телец', 4]
         }
-        if (new Date('1900-05-21') <= date && date <= new Date('1900-06-20')){
+        if (new Date('1900-05-21') <= date && date <= new Date('1900-06-20')) {
             return ['Близнецы', 5]
         }
-        if (new Date('1900-06-21') <= date && date <= new Date('1900-07-22')){
+        if (new Date('1900-06-21') <= date && date <= new Date('1900-07-22')) {
             return ['Рак', 6]
         }
-        if (new Date('1900-07-23') <= date && date <= new Date('1900-08-22')){
+        if (new Date('1900-07-23') <= date && date <= new Date('1900-08-22')) {
             return ['Лев', 7]
         }
-        if (new Date('1900-08-23') <= date && date <= new Date('1900-09-22')){
+        if (new Date('1900-08-23') <= date && date <= new Date('1900-09-22')) {
             return ['Дева', 8]
         }
-        if (new Date('1900-09-23') <= date && date <= new Date('1900-10-22')){
+        if (new Date('1900-09-23') <= date && date <= new Date('1900-10-22')) {
             return ['Весы', 9]
         }
-        if (new Date('1900-10-23') <= date && date <= new Date('1900-11-22')){
+        if (new Date('1900-10-23') <= date && date <= new Date('1900-11-22')) {
             return ['Скорпион', 10]
         }
-        if (new Date('1900-11-23') <= date && date <= new Date('1900-12-21')){
+        if (new Date('1900-11-23') <= date && date <= new Date('1900-12-21')) {
             return ['Стрелец', 11]
         }
     }
     setParams = (e) => {
         const value = e.target.value;
-        this.calculateNumber(value);        
+        this.calculateNumber(value);
         let infArr = this.calcucateSign(value);
-        if(infArr){
+        if (infArr) {
             this.setState({
                 sign: infArr[0],
                 signId: infArr[1]
             })
         }
-        
+
     }
 
     render() {
@@ -145,7 +146,7 @@ export default class EditPage extends Component {
 
                         <div className="button-field">
                             <p className='button-label'>Не знаете свой тип?</p>
-                            <Link to="/testSocioPage" className='to-test-button pink-color'>Пройти тест</Link>
+                            <HashLink to="/testSocioPage#top" className='to-test-button pink-color'>Пройти тест</HashLink>
                         </div>
 
                         <div className="flex-field">
@@ -159,7 +160,7 @@ export default class EditPage extends Component {
 
                         <div className="button-field">
                             <p className='button-label'>Не знаете свой тип?</p>
-                            <Link to="/test16PersPage" className='to-test-button peach-color'>Пройти тест</Link>
+                            <HashLink to="/test16PersPage#top" className='to-test-button peach-color'>Пройти тест</HashLink>
                         </div>
 
                         <Link to="#!" type="submit" className='login-button no-fixed'><i className="fas fa-play"></i></Link>

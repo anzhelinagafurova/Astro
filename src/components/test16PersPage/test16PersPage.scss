@@ -1,5 +1,6 @@
 .test-16pers-page {
   background-color: #FEF3EF;
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   flex-direction: column;

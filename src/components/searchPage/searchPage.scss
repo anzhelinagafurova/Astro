@@ -23,16 +23,20 @@
         align-items: baseline;
         flex-basis: 1;
         .name {
-          font-size: 24px;
+          font-size: 20px;
           margin-right: 5px;
+        }
+        p {
+          font-size: 14px;
         }
       }
       .right {
+        font-size: 14px;
         display: flex;
         flex-basis: 1;
         align-items: baseline;
         .percent {
-          font-size: 24px;
+          font-size: 20px;
         }
 
       }
