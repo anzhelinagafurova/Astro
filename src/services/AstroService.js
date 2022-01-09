@@ -14,7 +14,8 @@ export default class AstroService {
     return fetch(url, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        token: localStorage.token
       },
       body: JSON.stringify(data)
     })

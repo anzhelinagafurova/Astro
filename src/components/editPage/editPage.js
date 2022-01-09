@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Header from '../header/header';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { readPhoto } from '../helpers';
+import { connect } from "react-redux";
+import AstroService from '../../services/AstroService';
 import './editPage.scss';
 
-export default class EditPage extends Component {
+class EditPage extends Component {
+
+    service = new AstroService();
 
     socialTypes = ['Не выбрано', 'ИЛЭ (Дон Кихот)', 'СЭИ (Дюма)', 'ЭСЭ (Гюго)', 'ЛИИ (Робеспьер)', 'ИЭИ (Есенин)', 'СЛЭ (Жуков)', 'ЭИЭ (Гамлет)', 'ЛСИ (Максим Горький)',
         'ИЛИ (Бальзак)', 'СЭЭ (Наполеон)', 'ЭСИ (Драйзер)', 'ЛИЭ (Джек Лондон)', 'ЛСЭ (Шритлиц)', 'ЭИИ (Достоевский)', 'ИЭЭ (Гексли)', 'СЛИ (Габен)'];
@@ -16,9 +20,7 @@ export default class EditPage extends Component {
         "Виртуоз (ISTP-A / ISTP-T)", "Артист (ISFP-A / ISFP-T)", "Делец (ESTP-A / ESTP-T)", "Развлекатель (ESFP-A / ESFP-T)"]
 
     state = {
-        name: "",
-        city: "",
-        birthDate: "",
+        redirect: false,
         photo: null,
         sign: '',
         signId: null,
@@ -32,8 +34,26 @@ export default class EditPage extends Component {
         })
     }
 
-    validateForm = (e) => {
+    sendForm = (e) => {
         e.preventDefault();
+        const {username, city, birth, description } = e.currentTarget;
+        const body = {
+            name: username.value,
+            img: this.state.photo,
+            city: city.value,
+            number: this.state.number,
+            date_of_birth: birth.value,
+            description: description.value,
+            zodiac_sign: this.state.signId
+        }
+        this.service.sendDataPut(body, '/profile').then((res) => {
+            if (res.status.ok) {
+                this.setState({
+                    redirect: true
+                })
+            }
+        })
+        this.props.setUserInfo(body);
     }
 
     calculateNumber = (num) => {
@@ -50,7 +70,6 @@ export default class EditPage extends Component {
     }
     calcucateSign = (date) => {
         date = new Date(null, Number(date.substring(5, 7)) - 1, Number(date.substring(8)))
-        debugger;
         if (date <= new Date('1900-01-19') || date >= new Date('1900-12-22')) {
             return ['Козерог', 0]
         }
@@ -102,7 +121,8 @@ export default class EditPage extends Component {
     }
 
     render() {
-        return (
+        const {userInfo} = this.props;
+        return this.state.redirect ? <Navigate to="/searchPage" /> : (
             <>
                 <Header linkTo="/searchPage" linkType="arrow" />
                 <label htmlFor="picture" id="upload-background">
@@ -111,28 +131,28 @@ export default class EditPage extends Component {
                     <input type="file" id="picture" className="hidden" accept="image/*" onChange={this.setPhoto} />
                 </label>
                 <section className='edit-container'>
-                    <form className='name-form' onSubmit={this.validateForm}>
+                    <form className='name-form' onSubmit={this.sendForm}>
 
                         {this.state.photo ? <p></p> : <p className='normal-label'>Загрузите фотографию</p>}
 
-                        <input className='form-name' type="text" name="username" placeholder='Имя' maxLength="25" required />
+                        <input className='form-name' type="text" name="username" placeholder='Имя' maxLength="25" defaultValue={userInfo ? userInfo.name : null} required />
 
-                        <input className='form-city' type="text" name="message" placeholder='Город' maxLength="30" />
+                        <input className='form-city' type="text" name="city" placeholder='Город' maxLength="30" defaultValue={userInfo ? userInfo.city : null}/>
 
-                        <input className='form-date' type="date" onChange={this.setParams}></input>
+                        <input className='form-date' type="date" onChange={this.setParams} name="birth" defaultValue={userInfo ? userInfo.date_of_birth : null}></input>
                         <p className='date-label'>Дата рождения</p>
 
                         <p className='info-label'>О себе</p>
-                        <textarea className='info-field' placeholder="Напишите несколько строк о вас!" />
+                        <textarea className='info-field' name="description" placeholder="Напишите несколько строк о вас!" defaultValue={userInfo ? userInfo.description : null}/>
 
                         <div className="flex-field">
                             <p className="flex-label">Знак зодиака:</p>
-                            <input type="text" className="form-date" value={this.state.sign} readOnly />
+                            <input type="text" className="form-date" name="sign" value={this.state.sign} readOnly />
                         </div>
 
                         <div className="flex-field">
                             <p className="flex-label">Число судьбы:</p>
-                            <input type="text" className="form-date" value={this.state.number} readOnly />
+                            <input type="text" className="form-date" name="number" value={this.state.number} readOnly />
                         </div>
 
                         <div className="flex-field">
@@ -163,10 +183,26 @@ export default class EditPage extends Component {
                             <HashLink to="/test16PersPage#top" className='to-test-button peach-color'>Пройти тест</HashLink>
                         </div>
 
-                        <Link to="#!" type="submit" className='login-button no-fixed'><i className="fas fa-play"></i></Link>
+                        <button type="submit" className='login-button no-fixed'><i className="fas fa-play"></i></button>
                     </form>
                 </section>
             </>
         )
     }
 }
+const mapStateToProps = ({ userInfo }) => {
+    return userInfo;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      setUserInfo: (message) => {
+        dispatch({ type: "SET_INFO", payload: message })
+      },
+      setToken: (value) => {
+        dispatch({ type: "SET_TOKEN", payload: value })
+      }
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditPage)

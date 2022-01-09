@@ -1,5 +1,6 @@
 const initialState = {
-    dataSearch: null
+    dataSearch: null,
+    userInfo: {}
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -13,6 +14,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload
+            }
+        }
+        case "SET_INFO": {
+            return {
+                ...state,
+                userInfo: action.payload
             }
         }
 

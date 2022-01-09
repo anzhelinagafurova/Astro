@@ -50,7 +50,6 @@ class EnterPage extends Component {
       })
       return 2;
     }
-
     this.service.sendDataPost(userInfo, '/auth/login')
       .then((result) => result.json())
       .then((result) => {
@@ -61,6 +60,9 @@ class EnterPage extends Component {
             error: false
           })
           localStorage.setItem('token', result.access_token)
+          
+          this.props.setInfo(result)
+
         } else {
           if (result.detail === "Wrong password!") {
             this.setState({
@@ -84,33 +86,10 @@ class EnterPage extends Component {
   }
 }
 
-const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    myUserName, myWelcomeMessage, myProfilePhoto
-  }
-}
-
-const mapDispatchProps = (dispatch) => {
-  return {
-    setPhone: (e) => {
-      const newPhone = e.target.value;
-      dispatch({ type: "SET_MY_PASSWORD", payload: newPhone })
-    },
-    setPassword: (e) => {
-      const newPassword = e.target.value;
-      dispatch({ type: "SET_MY_PHONE", payload: newPassword })
-    },
-    setId: (id) => {
-      dispatch({ type: "SET_MY_ID", payload: id })
-    },
-    setProlifePhoto: (photo) => {
-      dispatch({ type: "SET_MY_PROFILE_PHOTO", payload: photo })
-    },
-    setUserName: (name) => {
-      dispatch({ type: "SET_MY_USER_NAME", payload: name })
-    },
-    setWelcomeMessage: (message) => {
-      dispatch({ type: "SET_MY_WELCOME_MESSAGE", payload: message })
+    setUserInfo: (message) => {
+      dispatch({ type: "SET_INFO", payload: message })
     },
     setToken: (value) => {
       dispatch({ type: "SET_TOKEN", payload: value })
@@ -118,5 +97,5 @@ const mapDispatchProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchProps)(EnterPage);
+export default connect(mapDispatchToProps)(EnterPage);
 

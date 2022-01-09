@@ -3,9 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import '../enterPage/enterPage.scss';
 import './registrationPage.scss';
 import AstroService from "../../services/AstroService";
-import { connect } from 'react-redux';
 
-class RegistrationPage extends Component {
+export default class RegistrationPage extends Component {
   service = new AstroService();
 
   state = {
@@ -82,38 +81,5 @@ class RegistrationPage extends Component {
       })
   }
 }
-const mapStateToProps = ({ myUserName, myWelcomeMessage, myProfilePhoto }) => {
-  return {
-    myUserName, myWelcomeMessage, myProfilePhoto
-  }
-}
 
-const mapDispatchProps = (dispatch) => {
-  return {
-    setPhone: (e) => {
-      const newPhone = e.target.value;
-      dispatch({ type: "SET_MY_PASSWORD", payload: newPhone })
-    },
-    setPassword: (e) => {
-      const newPassword = e.target.value;
-      dispatch({ type: "SET_MY_PHONE", payload: newPassword })
-    },
-    setId: (id) => {
-      dispatch({ type: "SET_MY_ID", payload: id })
-    },
-    setProlifePhoto: (photo) => {
-      dispatch({ type: "SET_MY_PROFILE_PHOTO", payload: photo })
-    },
-    setUserName: (name) => {
-      dispatch({ type: "SET_MY_USER_NAME", payload: name })
-    },
-    setWelcomeMessage: (message) => {
-      dispatch({ type: "SET_MY_WELCOME_MESSAGE", payload: message })
-    },
-    setToken: (value) => {
-      dispatch({ type: "SET_TOKEN", payload: value })
-    }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchProps)(RegistrationPage);
