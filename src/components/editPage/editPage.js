@@ -104,7 +104,7 @@ export default class EditPage extends Component {
     render() {
         return (
             <>
-                <Header linkTo="/registrationPage" linkType="arrow" />
+                <Header linkTo="/searchPage" linkType="arrow" />
                 <label htmlFor="picture" id="upload-background">
                     {this.state.photo ? <img src={this.state.photo} alt="Profile icon" className="profile-photo"></img> :
                         <div className="upload-background"><i className="fa fa-plus" aria-hidden="true"></i></div>}

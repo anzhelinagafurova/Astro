@@ -38,6 +38,11 @@ class SearchPage extends Component {
     else return "#B44A33";
   }
 
+  defineZZ(zz) {
+    const arrZZ = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+    return arrZZ[zz];
+  }
+
   componentWillMount() {
     const { setDataSearch } = this.props;
     fetch('/pairs/list_for_swipe', { headers: { token: localStorage.token } })
@@ -120,7 +125,7 @@ class SearchPage extends Component {
                 {this.state.tpers}
               </div>
               <div className="block" style={{ backgroundColor: `${this.detectColor(this.state.zz)}` }}>
-                {this.state.tzz}
+                {this.defineZZ(this.state.tzz)}
               </div>
             </div>
             <img className="like" src="/img/hearts/heart1.png" alt="like" onClick={() => this.updateUser(true)}></img>
