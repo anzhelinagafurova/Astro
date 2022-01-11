@@ -43,7 +43,7 @@ class SearchPage extends Component {
     return arrZZ[zz];
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { setDataSearch } = this.props;
     fetch('/pairs/list_for_swipe', { headers: { token: localStorage.token } })
       .then((result) => result.json())

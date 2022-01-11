@@ -6,6 +6,7 @@ import AstroService from "../../services/AstroService";
 
 export default class RegistrationPage extends Component {
   service = new AstroService();
+  error_codes = ['Данный пользователь уже зарегистрирован в системе!', 'Введенные пароли не совпадают!', 'Номер телефона короче 10 цифр!', 'Произошла ошибка'];
 
   state = {
     phone: '',
@@ -13,11 +14,11 @@ export default class RegistrationPage extends Component {
     password2: '',
     redirect: false,
     error: false,
-    error_code: -1
+    error_code: null
   }
 
   render() {
-
+    const err = this.state.error_code;
     return this.state.redirect ? <Navigate to="/editPage" /> : (
       <section className='login-container'>
         <Link to={'/'} className='h2-text'><h2 className='h2-text'>вход</h2></Link>
@@ -31,52 +32,55 @@ export default class RegistrationPage extends Component {
           <input type="password" name="password2" placeholder='Повторите пароль' required></input>
           <button type="submit" className='login-button'><i className="fas fa-play"></i></button>
         </form>
-        {this.state.error && this.state.error_code === 0 ? <span className="error-msg">Данный пользователь уже зарегистрирован в системе!</span> : null}
-        {this.state.error && this.state.error_code === 1 ? <span className="error-msg">Введенные пароли не совпадают!</span> : null}
-        {this.state.error && this.state.error_code === 2 ? <span className="error-msg">Номер телефона короче 10 цифр!</span> : null}
+        {this.state.error ? <span className="error-msg">{err ? this.error_codes[Number(err)] : this.error_codes[3]}</span> : null}
       </section>
     )
   }
   sendForm = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const { setToken } = this.props;
     let userInfo = {
       phone: form.phoneNumber.value,
       password: form.password.value
     };
+
     if (userInfo.phone.length !== 10) {
       this.setState({
         error: true,
-        error_code: 2
+        error_code: '2'
       })
-      return 2;
+      return;
     }
-    if (form.password.value !== form.password2.value) {
+    else if (form.password.value !== form.password2.value) {
       this.setState({
         error: true,
-        error_code: 1
+        error_code: '1'
       })
-      return 1;
+      return;
     }
-    this.setState({
-      error: false,
-      error_code: -1
+    else this.setState({
+      error: false
     })
     this.service.sendDataPost(userInfo, '/auth/signup')
       .then((result) => result.json())
       .then((result) => {
-        setToken(result.access_token);
-        this.setState({
-          redirect: true,
-          error: false
-        })
-        localStorage.setItem('token', result.access_token)
+        if (result.detail === "User with this phone already exists!") {
+          this.setState({
+            error: true,
+            error_code: '0'
+          })}
+
+        else {
+          localStorage.setItem('token', result.access_token)
+          this.setState({
+            redirect: true
+          })
+        }
       })
+
       .catch(() => {
         this.setState({
-          error: true,
-          error_code: 0
+          error: true
         })
       })
   }

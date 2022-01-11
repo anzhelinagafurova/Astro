@@ -6,17 +6,18 @@ import AstroService from "../../services/AstroService";
 
 class EnterPage extends Component {
   service = new AstroService();
+  error_codes = ['Пользователь не существует!', 'Неправильный пароль!', 'Номер телефона короче 10 цифр!', 'Произошла ошибка'];
 
   state = {
     phone: '',
     password: '',
     redirect: false,
     error: false,
-    error_code: -1,
-    token: null
+    error_code: null
   }
 
   render() {
+    const err = this.state.error_code;
     return this.state.redirect ? <Navigate to="/searchPage" /> : (
       <section className='login-container'>
         <Link to={'/registrationPage'} className='h2-r-text'><h2 className='h2-r-text'>регистрация</h2></Link>
@@ -29,16 +30,13 @@ class EnterPage extends Component {
           <input type="password" name="password" placeholder='Пароль' required></input>
           <button type="submit" className='login-button'><i className="fas fa-play"></i></button>
         </form>
-        {this.state.error && this.state.error_code === 0 ? <span className="error-msg">Пользователь не существует!</span> : null}
-        {this.state.error && this.state.error_code === 1 ? <span className="error-msg">Неправильный пароль!</span> : null}
-        {this.state.error && this.state.error_code === 2 ? <span className="error-msg">Номер телефона короче 10 цифр!</span> : null}
+        {this.state.error ? <span className="error-msg">{err ? this.error_codes[Number(err)] : this.error_codes[3]}</span> : null}
       </section>
     )
   }
   sendForm = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const { setToken } = this.props;
     let userInfo = {
       phone: form.phoneNumber.value,
       password: form.password.value
@@ -46,7 +44,7 @@ class EnterPage extends Component {
     if (userInfo.phone.length !== 10) {
       this.setState({
         error: true,
-        error_code: 2
+        error_code: '2'
       })
       return 2;
     }
@@ -54,25 +52,22 @@ class EnterPage extends Component {
       .then((result) => result.json())
       .then((result) => {
         if (result.access_token) {
-          setToken(result.access_token);
+          localStorage.setItem('token', result.access_token)
+          this.props.setUserInfo(result)
           this.setState({
             redirect: true,
             error: false
           })
-          localStorage.setItem('token', result.access_token)
-          
-          this.props.setInfo(result)
-
         } else {
           if (result.detail === "Wrong password!") {
             this.setState({
               error: true,
-              error_code: 1
+              error_code: '1'
             })
-          } else if (result.detail === "User doesn't exist!!") {
+          } else if (result.detail === "User doesn't exist!") {
             this.setState({
               error: true,
-              error_code: 0
+              error_code: '0'
             })
           }
         }
@@ -85,17 +80,17 @@ class EnterPage extends Component {
       })
   }
 }
+const mapStateToProps = (state) => {
+  return state
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setUserInfo: (message) => {
       dispatch({ type: "SET_INFO", payload: message })
-    },
-    setToken: (value) => {
-      dispatch({ type: "SET_TOKEN", payload: value })
     }
   }
 }
 
-export default connect(mapDispatchToProps)(EnterPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EnterPage);
 

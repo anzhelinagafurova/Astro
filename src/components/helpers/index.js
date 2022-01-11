@@ -1,3 +1,3 @@
-import {readPhoto} from './functions';
+import {readPhoto, calcucateSign} from './functions';
 
-export  {readPhoto};
+export  {readPhoto, calcucateSign};

@@ -1,5 +1,12 @@
 export default class AstroService {
-  //data = [];
+  
+  socialTypes = ['Не выбрано', 'ИЛЭ (Дон Кихот)', 'СЭИ (Дюма)', 'ЭСЭ (Гюго)', 'ЛИИ (Робеспьер)', 'ИЭИ (Есенин)', 'СЛЭ (Жуков)', 'ЭИЭ (Гамлет)', 'ЛСИ (Максим Горький)',
+        'ИЛИ (Бальзак)', 'СЭЭ (Наполеон)', 'ЭСИ (Драйзер)', 'ЛИЭ (Джек Лондон)', 'ЛСЭ (Шритлиц)', 'ЭИИ (Достоевский)', 'ИЭЭ (Гексли)', 'СЛИ (Габен)'];
+
+  sixteenPersTypes = ['Не выбрано', 'Стратег (INTJ-A / INTJ-T)', 'Ученый (INTP-A / INTP-T)', "Командир (ENTJ-A / ENTJ-T)", "Полемист (ENTP-A / ENTP-T)",
+      "Активист (INFJ-A / INFJ-T)", "Посредник (INFP-A / INFP-T)", "Тренер (ENFJ-A / ENFJ-T)", "Борец (ENFP-A / ENFP-T)",
+      "Администратор (ISTJ-A / ISTJ-T)", "Защитник (ISFJ-A / ISFJ-T)", "Менеджер (ESTJ-A / ESTJ-T)", "Консул (ESFJ-A / ESFJ-T)",
+      "Виртуоз (ISTP-A / ISTP-T)", "Артист (ISFP-A / ISFP-T)", "Делец (ESTP-A / ESTP-T)", "Развлекатель (ESFP-A / ESFP-T)"]
 
   sendDataPost(data, url) {
     return fetch(url, {
@@ -21,31 +28,3 @@ export default class AstroService {
     })
   }
 }
-  //   let ws = new WebSocket('wss://dating-app-urfu.herokuapp.com/ws/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDA0MjA5NTgsIm5iZiI6MCwiZXhwIjoxNjQwNDI0NTU4LCJzdWIiOiI2IiwidXNlciI6eyJpZCI6NiwicGhvbmUiOiIwMjk1ODk0ODUzIn19.2lPi1FKMpmFt-yfyL-YZd9QbA5sp9dWt966UKZG_8D4');
-  //   ws.onmessage = function(event) {
-  //     var msg = JSON.parse(event.data)
-  //     console.log(msg)
-  // }
-
-  // console.log(JSON.stringify(userInfo))
-    // fetch('/auth/test_auth', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDA0MjA5NTgsIm5iZiI6MCwiZXhwIjoxNjQwNDI0NTU4LCJzdWIiOiI2IiwidXNlciI6eyJpZCI6NiwicGhvbmUiOiIwMjk1ODk0ODUzIn19.2lPi1FKMpmFt-yfyL-YZd9QbA5sp9dWt966UKZG_8D4'
-    //   }
-    // })
-
-          // setUserName(answer.name)
-      // setWelcomeMessage(answer.welcome_msg)
-      // setProlifePhoto(answer.image_link)
-      // setId(answer.id)
-
-          // if (answer.status === 1) {
-    //   alert("Password is incorrect!")
-    // }
-    // if (answer.status === 2) {
-    //   const { history } = this.props;
-    //   history.push('/edit');
-    // }
-    // })
