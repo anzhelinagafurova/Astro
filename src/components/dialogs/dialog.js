@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useDebugValue, useState } from 'react';
 import { useLocation } from 'react-router';
 import AstroService from './dialogsData';
 import Header from '../header/header';
@@ -9,15 +9,11 @@ const Dialog = () => {
     const astro = new AstroService();
     const [name, setName] = useState(null);
     const [image, setImage] = useState(null);
+    const [mesInd, setIndex] = useState(0);
     const [mesHistory, setMesHistory] = useState([{
         isIncome: true,
         message: "Прив, как дела?",
         date: "14:33"
-    },
-    {
-        isIncome: false,
-        message: "Отлично, а у тебя?",
-        date: "14:50"
     }]);
 
     const renderMessageHistory = function () {
@@ -35,6 +31,28 @@ const Dialog = () => {
             renderMessage();
         }
     }
+
+    const randomMessages = [
+        'У меня все отлично, день прекрасный',
+        'Мне нравится твоя фотография :)',
+        'Какой твой любимый фильм?',
+        'Правда? А мне вообще не понравился...'
+    ]
+
+    const generateRandomMessage = function () {
+        if (mesInd > randomMessages.length-2) {
+            setIndex(0)
+        }
+        else {
+            setIndex(mesInd + 1)
+        }
+        const newMessage = {
+            isIncome: true,
+            message: randomMessages[mesInd],
+            date: new Date()
+        }
+        setTimeout(() => setMesHistory([...mesHistory, newMessage]), 100) 
+    }
     const addMessage = function (event) {
         event.preventDefault();
         if(event.target.message.value.replace(/\s/g, '')) {
@@ -46,6 +64,10 @@ const Dialog = () => {
             event.target.message.value = null;
             setMesHistory([...mesHistory, newMessage])
         }
+        else {
+            generateRandomMessage()
+        }
+
     }
     const renderMessage = function () {
         return (

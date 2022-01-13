@@ -9,23 +9,22 @@ class SearchPage extends Component {
   service = new AstroService();
 
   state = {
-    current_user: 0,
+    current_user: -1,
     data: [],
     id: 0,
-    name: "",
-    age: 0,
-    city: "",
-    percent: 0,
-    img: "https://www.film.ru/sites/default/files/persones/_imported/0001052.jpg",
+    name: "Максим",
+    age: 23,
+    city: "Подольск",
+    percent: 100,
+    img: "https://sun9-85.userapi.com/impg/gAkcXZ6LL9gaklbciCOHznPCHXJlGKlWGTZAog/k7HVHSNF11Q.jpg?size=834x1080&quality=96&sign=769962aad009f47c79d6fff98f73b211&type=album",
     socio: 60,
     pers: 80,
     number: 30,
-    zz: 99,
+    zz: 70,
     tpers: "Администратор",
-    tsocio: "Максим Горький",
+    tsocio: "Дон Кихот",
     tnumber: "7",
-    tzz: "♈"
-
+    tzz: 1
   }
 
   detectColor(number) {
@@ -45,55 +44,62 @@ class SearchPage extends Component {
 
   componentDidMount() {
     const { setDataSearch } = this.props;
-    fetch('/pairs/list_for_swipe', { headers: { token: localStorage.token } })
-      .then((result) => result.json())
-      .then((result) => {
-        setDataSearch(result);
-        this.setState({
-          data: result,
-          id: result[0].id,
-          name: result[0].name,
-          age: result[0].age,
-          city: result[0].city,
-          percent: result[0].percent,
-          img: result[0].img ? result[0].img : "https://www.film.ru/sites/default/files/persones/_imported/0001052.jpg",
-          socio: result[0].socio,
-          pers: result[0].pers,
-          number: result[0].nr,
-          zz: result[0].zs,
-          tpers: result[0].sixteen_pers_type,
-          tsocio: result[0].socionic_type,
-          tnumber: result[0].number,
-          tzz: result[0].zodiac_sign
-        })
-        localStorage.setItem('dataSearch', result)
-      })
+    this.setState({
+      data: this.service.people,
+    })
+
+
+    // fetch('/pairs/list_for_swipe', { headers: { token: localStorage.token } })
+    //   .then((result) => result.json())
+    //   .then((result) => {
+    //     setDataSearch(result);
+    //     this.setState({
+    //       data: result,
+    //       id: result[0].id,
+    //       name: result[0].name,
+    //       age: result[0].age,
+    //       city: result[0].city,
+    //       percent: result[0].percent,
+    //       img: result[0].img ? result[0].img : "https://www.film.ru/sites/default/files/persones/_imported/0001052.jpg",
+    //       socio: result[0].socio,
+    //       pers: result[0].pers,
+    //       number: result[0].nr,
+    //       zz: result[0].zs,
+    //       tpers: result[0].sixteen_pers_type,
+    //       tsocio: result[0].socionic_type,
+    //       tnumber: result[0].number,
+    //       tzz: result[0].zodiac_sign
+    //     })
+    //     localStorage.setItem('dataSearch', result)
+    //   })
   }
 
-  updateUser(like) {
-    const current_user = this.state.current_user + 1
+  updateUser = (like) => {
+    const current_user = this.state.current_user + 1;
+    const {id = null, name, age, city, percent, img, socio, pers, 
+      number, zz, tpers, tsocio, tnumber, tzz } = this.state.data[current_user];
     this.setState({
-      current_user: current_user,
-      id: this.state.data[current_user].id,
-      name: this.state.data[current_user].name,
-      age: this.state.data[current_user].age,
-      city: this.state.data[current_user].city,
-      percent: this.state.data[current_user].percent,
-      img: this.state.data[current_user].img ? this.state.data[current_user].img : "https://www.film.ru/sites/default/files/persones/_imported/0001052.jpg",
-      socio: this.state.data[current_user].socio,
-      pers: this.state.data[current_user].pers,
-      number: this.state.data[current_user].nr,
-      zz: this.state.data[current_user].zs,
-      tpers: this.state.data[current_user].sixteen_pers_type,
-      tsocio: this.state.data[current_user].socionic_type,
-      tnumber: this.state.data[current_user].number,
-      tzz: this.state.data[current_user].zodiac_sign
+      current_user,
+      id,
+      name,
+      age,
+      city,
+      percent,
+      img,
+      socio,
+      pers,
+      number,
+      zz,
+      tpers,
+      tsocio,
+      tnumber,
+      tzz
     })
-    if (like) {
-      fetch(`/pairs/like/${this.state.id}?liked=true`, { method: 'PUT', headers: { token: localStorage.token } })
-    } else {
-      fetch(`/pairs/like/${this.state.id}?liked=false`, { method: 'PUT', headers: { token: localStorage.token } })
-    }
+    // if (like) {
+    //   fetch(`/pairs/like/${this.state.id}?liked=true`, { method: 'PUT', headers: { token: localStorage.token } })
+    // } else {
+    //   fetch(`/pairs/like/${this.state.id}?liked=false`, { method: 'PUT', headers: { token: localStorage.token } })
+    // }
   }
 
   render() {

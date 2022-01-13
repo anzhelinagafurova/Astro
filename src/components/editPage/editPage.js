@@ -38,13 +38,13 @@ class EditPage extends Component {
             description: description.value,
             zodiac_sign: this.state.signId
         }
-        this.service.sendDataPut(body, '/profile').then((res) => {
-            if (res.status.ok) {
-                this.setState({
-                    redirect: true
-                })
-            }
-        })
+        // this.service.sendDataPut(body, '/auth/test_auth').then((res) => {
+        //     if (res.status.ok) {
+        //         this.setState({
+        //             redirect: true
+        //         })
+        //     }
+        // })
         this.props.setUserInfo(body);
     }
 
